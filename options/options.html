@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Copy into LLM</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main>
+    <section id="permissions" hidden>
+      <p class="warning">
+        This extension needs access to claude.ai, chatgpt.com and gemini.google.com
+        to fill in the chat box. Access is currently missing.
+      </p>
+      <button id="grant-permissions" type="button">Grant site access</button>
+    </section>
+
+    <section>
+      <h2>Default assistant</h2>
+      <p class="hint">Used by the top-level <em>Copy into…</em> menu item and the keyboard shortcut.</p>
+      <fieldset id="default-provider"></fieldset>
+      <p id="saved" class="saved" aria-live="polite"></p>
+    </section>
+
+    <section>
+      <h2>Keyboard shortcut</h2>
+      <p class="hint">
+        <span id="shortcut">Not set</span> sends the current selection to your default assistant.
+        Change it under <em>Manage Extension Shortcuts</em> in <code>about:addons</code>.
+      </p>
+    </section>
+  </main>
+  <script src="../providers.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

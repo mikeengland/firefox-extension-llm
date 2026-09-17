@@ -1,0 +1,67 @@
+{
+  "manifest_version": 3,
+  "name": "Copy into LLM",
+  "version": "0.1.0",
+  "description": "Select text, right-click, and open it in a new Claude, ChatGPT or Gemini chat.",
+  "homepage_url": "https://github.com/mikeengland/firefox-extension-llm",
+
+  "icons": {
+    "48": "icons/icon.svg",
+    "96": "icons/icon.svg"
+  },
+
+  "permissions": [
+    "menus",
+    "storage",
+    "scripting",
+    "activeTab",
+    "clipboardWrite"
+  ],
+
+  "host_permissions": [
+    "https://claude.ai/*",
+    "https://chatgpt.com/*",
+    "https://gemini.google.com/*"
+  ],
+
+  "background": {
+    "scripts": ["providers.js", "background.js"]
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://claude.ai/*",
+        "https://chatgpt.com/*",
+        "https://gemini.google.com/*"
+      ],
+      "js": ["providers.js", "content/inject.js"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": false
+  },
+
+  "commands": {
+    "send-to-default": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+L",
+        "mac": "Command+Shift+L"
+      },
+      "description": "Copy the selected text into a new chat with your default assistant"
+    }
+  },
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "copy-into-llm@mikeengland",
+      "strict_min_version": "128.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  }
+}
