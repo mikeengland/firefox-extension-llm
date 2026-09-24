@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "description": "Firefox extension: select text and open it in a new Claude, ChatGPT or Gemini chat.",
+  "license": "MIT",
   "scripts": {
     "test": "node --test",
     "lint": "web-ext lint --source-dir . --ignore-files 'node_modules/**' 'test/**' 'package.json' 'package-lock.json' 'README.md' '.gitignore' 'web-ext-artifacts/**'",
     "start": "web-ext run --source-dir . --ignore-files 'node_modules/**' 'test/**' 'package.json' 'package-lock.json' 'README.md' '.gitignore' 'web-ext-artifacts/**'",
-    "build": "web-ext build --source-dir . --ignore-files 'node_modules/**' 'test/**' 'package.json' 'package-lock.json' 'README.md' '.gitignore' 'web-ext-artifacts/**' --overwrite-dest"
+    "build": "web-ext build --source-dir . --ignore-files 'node_modules/**' 'test/**' 'package.json' 'package-lock.json' 'README.md' '.gitignore' 'LICENSE' 'web-ext-artifacts/**' --overwrite-dest",
+    "sign": "web-ext sign --channel=unlisted --source-dir . --ignore-files 'node_modules/**' 'test/**' 'package.json' 'package-lock.json' 'README.md' '.gitignore' 'LICENSE' 'web-ext-artifacts/**' --api-key=\"$WEB_EXT_API_KEY\" --api-secret=\"$WEB_EXT_API_SECRET\""
   },
   "devDependencies": {
     "web-ext": "^8.3.0"

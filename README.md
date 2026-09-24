@@ -33,6 +33,26 @@ npm run build    # produces web-ext-artifacts/*.zip for signing
 
 Requires Firefox 128 or newer.
 
+## Publishing
+
+Bump `version` in `manifest.json` before every upload; addons.mozilla.org (AMO)
+rejects a version it has already seen. Then either:
+
+- **List it on AMO.** Run `npm run build` to produce
+  `web-ext-artifacts/*.zip`, then upload it at
+  https://addons.mozilla.org/developers/ under **Submit a New Add-on** →
+  **On this site**. No source upload is needed since nothing is bundled or
+  minified. Have a summary, description, category, and privacy policy
+  ("no data is collected") ready.
+- **Self-distribute, signed but unlisted.** Generate API credentials at
+  https://addons.mozilla.org/developers/addon/api/key/, export them as
+  `WEB_EXT_API_KEY` and `WEB_EXT_API_SECRET`, then run `npm run sign`. The
+  signed `.xpi` lands in `web-ext-artifacts/` and can be installed directly
+  or attached to a GitHub release.
+
+Either way, `browser_specific_settings.gecko.id` in `manifest.json` must stay
+the same across versions so Firefox treats new uploads as updates.
+
 ## How it works
 
 1. The background script reads the selection from the page (so line breaks survive),
